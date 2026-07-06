@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game</title>
+<link rel="stylesheet" href="src/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+</head>
+<body>
+<a href="#app" class="skip-link">Pular para o conteúdo</a>
+<div id="app" role="application" aria-label="Jogo da Cobrinha">
+    <!-- MENU -->
+    <section id="menu" class="screen active" aria-labelledby="menu-title">
+        <h1 class="title" id="menu-title">SNAKE</h1>
+        <p class="subtitle">Jogo da Cobrinha</p>
+        <div class="menu-buttons">
+            <button class="btn" data-action="play" aria-label="Iniciar o jogo">Jogar</button>
+            <button class="btn" data-action="difficulty" aria-label="Alterar dificuldade">Dificuldade: <span id="diffLabel">Normal</span></button>
+            <button class="btn" data-action="sound" aria-label="Ativar ou desativar os efeitos sonoros">Som: <span id="soundLabel">Ligado</span></button>
+            <button class="btn" data-action="music" aria-label="Ativar ou desativar a música de fundo">Música: <span id="musicLabel">Ligada</span></button>
+        </div>
+        <p class="hint">Use as setas ou WASD para mover. Pause com ESC. Em telas de toque, deslize sobre o tabuleiro.</p>
+    </section>
+
+    <!-- GAME -->
+    <section id="game" class="screen" aria-labelledby="game-title">
+        <h2 class="sr-only" id="game-title">Partida em andamento</h2>
+        <div class="hud">
+            <span>Pontos: <b id="score" aria-live="polite">0</b></span>
+            <span>Recorde: <b id="best">0</b></span>
+        </div>
+        <div id="canvas-holder" aria-label="Tabuleiro do jogo" role="img"></div>
+        <p id="pauseStatus" class="sr-only" aria-live="polite"></p>
+        <div class="game-buttons">
+            <button class="btn small" data-action="pause" aria-label="Pausar o jogo">Pausar</button>
+            <button class="btn small" data-action="back" aria-label="Voltar ao menu">Menu</button>
+        </div>
+
+        <!-- Controles de toque (acessibilidade/responsividade) -->
+        <div class="touch-controls" aria-label="Controles de direção">
+            <button class="dpad" data-dir="up" aria-label="Mover para cima">▲</button>
+            <button class="dpad" data-dir="left" aria-label="Mover para a esquerda">◀</button>
+            <button class="dpad" data-dir="down" aria-label="Mover para baixo">▼</button>
+            <button class="dpad" data-dir="right" aria-label="Mover para a direita">▶</button>
+        </div>
+    </section>
+
+    <!-- GAME OVER -->
+    <section id="over" class="screen" aria-labelledby="over-title">
+        <h2 class="title over" id="over-title">Fim de Jogo</h2>
+        <p class="final-score">Pontuação: <b id="finalScore">0</b></p>
+        <div class="menu-buttons">
+            <button class="btn" data-action="retry" aria-label="Jogar novamente">Jogar de novo</button>
+            <button class="btn" data-action="back" aria-label="Voltar ao menu">Menu</button>
+        </div>
+    </section>
+
+    <!-- Região de anúncios para leitores de tela -->
+    <div id="announcer" class="sr-only" aria-live="assertive" role="status"></div>
+</div>
+
+<script src="src/scripts/config.js"></script>
+<script src="src/scripts/audio.js"></script>
+<script src="src/scripts/ui.js"></script>
+<script src="src/scripts/game.js"></script>
+</body>
+</html>
